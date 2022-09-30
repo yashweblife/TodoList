@@ -1,11 +1,11 @@
 import { useContext, useEffect } from 'react';
 
-import { IonBadge, IonCard, IonCardHeader, IonContent, IonFab, IonFabButton, IonHeader, IonIcon, IonList, IonPage, IonTitle, IonToolbar, useIonAlert } from '@ionic/react';
+import { IonBadge, IonCard, IonCardHeader, IonContent, IonFab, IonFabButton, IonFabList, IonHeader, IonIcon, IonList, IonPage, IonTitle, IonToolbar, useIonAlert } from '@ionic/react';
 import './Tab1.css';
 import TodoContext, {generateRandomString, TodoContextProvider} from '../store/todo-context';
 import TaskContainer from '../components/TaskContainer';
-import { addOutline } from 'ionicons/icons';
-
+import { addOutline, menuOutline, saveOutline } from 'ionicons/icons';
+import {CapacitorSQLite} from '@capacitor-community/sqlite'
 const Tab1: React.FC = () => {
   const [alert] = useIonAlert()
   const todoContext = useContext(TodoContext)
@@ -29,7 +29,16 @@ const Tab1: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         <IonFab slot="fixed" vertical='bottom' horizontal='end'>
-          <IonFabButton onClick={()=>
+          <IonFabButton>
+            <IonIcon icon={menuOutline}></IonIcon>
+          </IonFabButton>
+          <IonFabList side='start'>
+            <IonFabButton>
+              <IonIcon icon={saveOutline}></IonIcon>
+            </IonFabButton>
+          </IonFabList>
+          <IonFabList side="top">
+            <IonFabButton onClick={()=>
             alert({
               header:"Add A Task",
               buttons:[
@@ -48,8 +57,9 @@ const Tab1: React.FC = () => {
               ]
             })
           }>
-            <IonIcon icon={addOutline}></IonIcon>
-          </IonFabButton>
+              <IonIcon icon={addOutline}></IonIcon>
+            </IonFabButton>
+          </IonFabList>
         </IonFab>
         <IonList>
         {
