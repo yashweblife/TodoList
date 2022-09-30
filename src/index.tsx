@@ -3,13 +3,16 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
+import TodoContext, { TodoContextProvider } from './store/todo-context';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <TodoContextProvider>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </TodoContextProvider>
 );
 
 // If you want your app to work offline and load faster, you can change

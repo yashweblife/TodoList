@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'todo-list',
+  appName: 'Todo List',
   webDir: 'build',
   bundledWebRuntime: false
 };
